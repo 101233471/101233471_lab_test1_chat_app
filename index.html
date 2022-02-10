@@ -4,26 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat Room Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-    <div id = "error-container"></div>
-    <input id = "name" type="text" name="name" value=""
-        placeholder="Enter your Username">
-    <button type = "button" name ="button" onclick="setUsername()">
-    Send!
-    </button>
-    <br/>
-    <input id = "room" type="text" name = "room" value=""
-        placeholder="Enter room name!">
-    <button type = "button" name = "button" onclick="joinRoom()">
-    Join Room
-    </button>
+    <div class="mb3" id = "error-container"></div>
+    <label for="exampleFormControlInput1" class="form-label"><h1>Chat Room Application</h1></label><br>
+ 
+    <label class="mb3"><h2>Rooms Available to Join</h2></label><br><br>
+    <button class="form-control" style="background-color:blueviolet">News</button><br><br>
+    <button class="form-control" style="background-color: blueviolet">Covid-19</button><br><br>
+    <button class="form-control" style="background-color: blueviolet">NodeJS</button><br><br>
 
     <br/>
-    <input id = "message" type = "text" name = "message" value = ""
+    <input class="form-control" id="exampleFormControlInput1" id = "message" type = "text" name = "message" value = ""
         placeholder="Enter message to send">
-    <button type = "button" name = "button" onclick="sendMessage()">
+    <button style="background-color: aqua" class="form-control" id="exampleFormControlInput1" type = "button" name = "button" onclick="sendMessage()">
     Send Message!
     </button>
 
