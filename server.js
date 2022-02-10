@@ -45,13 +45,18 @@ app.get("/login.html", (req, res) => {
     res.redirect("/")
 })
 
-//news chatroom
+//chatroom
 app.get("/index.html", (req, res) => {
-    res.sendFile(__dirname + "/routes/static/news.html")
+    res.sendFile(__dirname + "/routes/static/chatRoom.html")
 })
 
 app.post("/index.html", (req, res) => {
-    res.sendFile(__dirname + "/routes/static/news.html")
+    res.sendFile(__dirname + "/routes/static/chatRoom.html")
+})
+
+//leave room
+app.post( "/routes/static/chatRoom.html", (req, res) => {
+    res.sendFile(__dirname +"index.html")
 })
 
 //registrating a new user

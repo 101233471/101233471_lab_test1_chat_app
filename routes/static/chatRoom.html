@@ -5,27 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News ChatRoom</title>
+    <title>ChatRoom</title>
 </head>
 
 <body>
     <label for="exampleFormControlInput1" class="form-label">
         <h1>Chat Room Application</h1>
     </label><br>
+
+    <form method="post">
+        <input class="form-control" id="message" type="text" name="message" value=""
+            placeholder="Enter message to send">
+
+        <button style="background-color: aqua" class="form-control" id="exampleFormControlInput1" type="submit"
+            name="button">
+            Send Message!
+        </button>
+
+
+        <h3>Chat History</h3>
+
+        <div id="message-container"></div>
+
+        <button type="submit">Leave Room</button>
+
+    </form>
+
     
-<form method="post">
-    <input class="form-control" id="exampleFormControlInput1" id="message" type="text" name="message" value=""
-        placeholder="Enter message to send">
-    <button style="background-color: aqua" class="form-control" id="exampleFormControlInput1" type="button"
-        name="button" onclick="sendMessage()">
-        Send Message!
-    </button>
 
-</form>
-
-    <h3>Chat History</h3>
-
-    <div id="message-container"></div>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
@@ -36,8 +43,8 @@
         })
 
         //Button click to join room
-        function joinRoom(){
-            var roomName = document.getElementById('room').value 
+        function joinRoom() {
+            var roomName = document.getElementById('room').value
             client.emit('join', roomName)
         }
 
@@ -46,28 +53,29 @@
             addMessage(data)
         })
 
-        function sendMessage(){
-            var msg = document.getElementById('message').value 
+        function sendMessage() {
+            var msg = document.getElementById('message').value
 
             var roomName = document.getElementById('room').value
-            if(roomName.length == 0){
+            if (roomName.length == 0) {
                 client.emit('message', msg)
-                addMessage('Me: '+ msg)
-            }else{
+                addMessage('Me: ' + msg)
+            } else {
                 msg = {
                     room: roomName,
-                    message: document.getElementById('message').value 
+                    message: document.getElementById('message').value
                 }
                 client.emit('room_message', msg)
                 addMessage(document.getElementById('message').value)
             }
-           
-            addMessage('Me: '+ msg)
+
+            addMessage('Me: ' + msg)
         }
 
-        function addMessage(message){
+        function addMessage(message) {
             document.getElementById('message-container').innerHTML += '<div>' + message + '</div>'
         }
+
     </script>
 
 </body>
