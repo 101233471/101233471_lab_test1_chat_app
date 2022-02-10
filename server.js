@@ -55,8 +55,11 @@ app.post("/index.html", (req, res) => {
 })
 
 //leave room
-app.post( "/routes/static/chatRoom.html", (req, res) => {
-    res.sendFile(__dirname +"index.html")
+app.get( "/routes/static/chatRoom.html", (req, res) => {
+
+    if(req.query.back){
+        res.redirect("/")
+    }
 })
 
 //registrating a new user

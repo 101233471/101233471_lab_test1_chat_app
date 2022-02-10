@@ -27,10 +27,14 @@
 
         <div id="message-container"></div>
 
-        <button type="submit">Leave Room</button>
+        
 
     </form>
 
+    <form method="get">
+        <input name="back" value="back" type="hidden">
+        <button type="submit">Leave Room</button>
+    </form>
     
 
     <script src="/socket.io/socket.io.js"></script>
@@ -74,6 +78,8 @@
 
         function addMessage(message) {
             document.getElementById('message-container').innerHTML += '<div>' + message + '</div>'
+            //saving msg to db
+            message.save()
         }
 
     </script>
