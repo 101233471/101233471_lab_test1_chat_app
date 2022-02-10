@@ -11,61 +11,16 @@
     <div class="mb3" id = "error-container"></div>
     <label for="exampleFormControlInput1" class="form-label"><h1>Chat Room Application</h1></label><br>
  
+<form method="post">
+
     <label class="mb3"><h2>Rooms Available to Join</h2></label><br><br>
-    <button class="form-control" style="background-color:blueviolet">News</button><br><br>
-    <button class="form-control" style="background-color: blueviolet">Covid-19</button><br><br>
-    <button class="form-control" style="background-color: blueviolet">NodeJS</button><br><br>
+    <button type="submit" class="form-control" style="background-color:blueviolet">News</button><br><br>
+    <button type="submit" class="form-control" style="background-color: blueviolet">Covid-19</button><br><br>
+    <button type="submit" class="form-control" style="background-color: blueviolet">NodeJS</button><br><br>
 
     <br/>
-    <input class="form-control" id="exampleFormControlInput1" id = "message" type = "text" name = "message" value = ""
-        placeholder="Enter message to send">
-    <button style="background-color: aqua" class="form-control" id="exampleFormControlInput1" type = "button" name = "button" onclick="sendMessage()">
-    Send Message!
-    </button>
 
-    <h3>Chat History</h3>
-    <div id = "message-container"></div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const client = io()
+</form>
 
-        client.on('welcome', (message) => {
-            addMessage(message)
-        })
-
-        //Button click to join room
-        function joinRoom(){
-            var roomName = document.getElementById('room').value 
-            client.emit('join', roomName)
-        }
-
-        client.on('newMessage', (msg) => {
-            const data = `<b>${msg.sender}:</b> ${msg.message}`
-            addMessage(data)
-        })
-
-        function sendMessage(){
-            var msg = document.getElementById('message').value 
-
-            var roomName = document.getElementById('room').value
-            if(roomName.length == 0){
-                client.emit('message', msg)
-                addMessage('Me: '+ msg)
-            }else{
-                msg = {
-                    room: roomName,
-                    message: document.getElementById('message').value 
-                }
-                client.emit('room_message', msg)
-                addMessage(document.getElementById('message').value)
-            }
-           
-            addMessage('Me: '+ msg)
-        }
-
-        function addMessage(message){
-            document.getElementById('message-container').innerHTML += '<div>' + message + '</div>'
-        }
-    </script>
 </body>
 </html>

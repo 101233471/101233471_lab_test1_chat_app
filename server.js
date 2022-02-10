@@ -45,11 +45,25 @@ app.get("/login.html", (req, res) => {
     res.redirect("/")
 })
 
+//news chatroom
+app.get("/index.html", (req, res) => {
+    res.sendFile(__dirname + "/routes/static/news.html")
+})
+
+app.post("/index.html", (req, res) => {
+    res.sendFile(__dirname + "/routes/static/news.html")
+})
+
 //registrating a new user
 app.post("/signup.html", async(req, res) => {
     let usernameTaken = await user.exists({username: req.body.username});
     if(usernameTaken === null) {
-        let newUser = new user({username: req.body.username, password: req.body.password, name: req.body.name})
+        let newUser = new user({
+            username: req.body.username, 
+            password: req.body.password, 
+            firstname: req.body.firstname,
+            lastname: req.body.lastname 
+        })
         newUser.save();
         res.redirect('/');
     }else {
@@ -59,9 +73,9 @@ app.post("/signup.html", async(req, res) => {
 
 //login
 app.post('/', async function(req, res) {
-    const authenticated = await user.findOne({ username: req.body.username, password: req.body.password });
-    if(authenticated) {
-        req.session.username = authenticated.username;
+    let auth = await user.findOne({ username: req.body.username, password: req.body.password });
+    if(auth) {
+        req.session.username = auth.username;
         res.redirect('/index.html');
     }
     else
